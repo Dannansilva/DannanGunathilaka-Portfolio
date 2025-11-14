@@ -1,56 +1,36 @@
 import ProjectCard, { Project } from './ProjectCard';
 
-// Add your content creation projects here
-// You can easily add, remove, or modify projects by editing this array
+
 const contentProjects: Project[] = [
   {
-    icon: '🎥',
-    title: 'React & Next.js Complete Course',
-    category: 'VIDEO COURSE',
-    description: 'Comprehensive video course covering React fundamentals, Next.js features, and building production-ready applications from scratch.',
-    tags: ['React', 'Next.js', 'Video Tutorial', 'Udemy'],
-    link: '#'
+    videoUrl: 'https://www.instagram.com/reel/DOFmWFkDLRZ/?igsh=ZHZqbXA2Y3puczR3',
+    client: 'D blaq',
+    link: 'https://www.instagram.com/reel/DOFmWFkDLRZ/?igsh=ZHZqbXA2Y3puczR3'
   },
   {
-    icon: '📝',
-    title: 'Tech Blog & Tutorials',
-    category: 'BLOG',
-    description: 'Technical blog featuring in-depth tutorials, best practices, and insights on modern web development, mobile apps, and software architecture.',
-    tags: ['Technical Writing', 'Dev.to', 'Medium', 'SEO'],
-    hasDetails: true,
-    link: '#'
+    videoUrl: 'https://www.instagram.com/reel/DJ1ascWo0CC/?igsh=MTR6MmNsMjdrOGtxcw==',
+    client: 'Fitness Kingdom & Balayaft',
+    link: 'https://www.instagram.com/reel/DJ1ascWo0CC/?igsh=MTR6MmNsMjdrOGtxcw=='
   },
   {
-    icon: '🎙️',
-    title: 'Code & Coffee Podcast',
-    category: 'PODCAST',
-    description: 'Weekly podcast discussing software engineering trends, interviewing industry experts, and sharing practical development tips.',
-    tags: ['Podcast', 'Interviews', 'Tech Trends', 'Spotify'],
-    link: '#'
+    videoUrl: 'https://www.instagram.com/reel/DDrew5XIYLC/?igsh=MTA5NTIzZXQ5OWhiZg==',
+    client: 'T-Lounge by Dilmah',
+    link: 'https://www.instagram.com/reel/DDrew5XIYLC/?igsh=MTA5NTIzZXQ5OWhiZg=='
   },
   {
-    icon: '💻',
-    title: 'JavaScript Mastery Series',
-    category: 'VIDEO COURSE',
-    description: 'Advanced JavaScript course covering ES6+, async patterns, performance optimization, and modern JavaScript ecosystem.',
-    tags: ['JavaScript', 'ES6+', 'YouTube', 'Free Course'],
-    link: '#'
+    videoUrl: 'https://www.instagram.com/reel/C9Hwa0cJMM_/?igsh=cnd4MHE3NjZxc2Fr',
+    client: 'Isso',
+    link: 'https://www.instagram.com/reel/C9Hwa0cJMM_/?igsh=cnd4MHE3NjZxc2Fr'
   },
   {
-    icon: '📚',
-    title: 'Mobile Development eBook',
-    category: 'EBOOK',
-    description: 'Comprehensive guide to cross-platform mobile development with React Native and Flutter, including real-world project examples.',
-    tags: ['React Native', 'Flutter', 'eBook', 'Self-Published'],
-    link: '#'
+    videoUrl: 'https://www.instagram.com/reel/C61Bh7uJwkF/?igsh=Ynp1NDF4ZXVhMWFz',
+    client: 'cinnachunk',
+    link: 'https://www.instagram.com/reel/C61Bh7uJwkF/?igsh=Ynp1NDF4ZXVhMWFz'
   },
   {
-    icon: '🎬',
-    title: 'System Design Explained',
-    category: 'VIDEO SERIES',
-    description: 'Video series breaking down complex system design concepts, scalability patterns, and architecture decisions for real-world applications.',
-    tags: ['System Design', 'Architecture', 'Scalability', 'YouTube'],
-    link: '#'
+    videoUrl: 'https://www.instagram.com/reel/C3O70nFITNh/?igsh=MXdlYTRncDJjY2R1Yg==',
+    client: 'Nutrimax.iso',
+    link: 'https://www.instagram.com/reel/C3O70nFITNh/?igsh=MXdlYTRncDJjY2R1Yg=='
   }
 ];
 

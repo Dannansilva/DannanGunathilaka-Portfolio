@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export interface Project {
   icon?: string;
@@ -17,6 +21,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
   // Convert Instagram regular URLs to embed URLs
   const getEmbedUrl = (url: string) => {
     if (url.includes('instagram.com/reel/')) {
@@ -34,8 +40,91 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   if (project.videoUrl) {
     return (
       <div className="group bg-black border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '9/16', height: '480px' }}>
-          <iframe
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '9/16', height: 'clamp(280px, 60vh, 480px)' }}>
+          {/* Loading Animation */}
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 flex items-center justify-center"
+            >
+              <div className="relative">
+                {/* Pulsing circles */}
+                <motion.div
+                  className="w-20 h-20 rounded-full border-4 border-cyan-500/30 absolute"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.5, 0, 0.5],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div
+                  className="w-20 h-20 rounded-full border-4 border-blue-500/30 absolute"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.5, 0, 0.5],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.4,
+                  }}
+                />
+                <motion.div
+                  className="w-20 h-20 rounded-full border-4 border-purple-500/30 absolute"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.5, 0, 0.5],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.8,
+                  }}
+                />
+                {/* Center icon */}
+                <motion.div
+                  className="w-20 h-20 flex items-center justify-center relative z-10"
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <svg className="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </motion.div>
+              </div>
+              {/* Loading text */}
+              <motion.p
+                className="absolute bottom-8 text-cyan-400 text-sm font-medium"
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                Loading content...
+              </motion.p>
+            </motion.div>
+          )}
+
+          {/* Video iframe */}
+          <motion.iframe
             src={getEmbedUrl(project.videoUrl)}
             title={project.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -47,16 +136,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               width: '100%',
               height: '800px',
               top: '-70px',
-              left: '0'
+              left: '0',
+              opacity: isLoading ? 0 : 1,
+              transition: 'opacity 0.5s ease-in-out',
             }}
-          ></iframe>
+            onLoad={() => setIsLoading(false)}
+          ></motion.iframe>
+
           {/* Client name overlay */}
-          {project.client && (
-            <div className="absolute bottom-4 left-4">
+          {project.client && !isLoading && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="absolute bottom-4 left-4"
+            >
               <span className="px-4 py-2 bg-blue-500/10 text-blue-400 rounded-full text-sm sm:text-base font-medium border border-blue-500/20 backdrop-blur-sm">
                 {project.client}
               </span>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

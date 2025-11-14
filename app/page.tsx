@@ -100,18 +100,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6"
             >
-              <div className="mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
+              <div className="mb-2 sm:mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
                 Dannan Gunathilake
               </div>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-zinc-400 font-normal"
+                className="text-xl sm:text-3xl md:text-4xl lg:text-5xl text-zinc-400 font-normal"
               >
-                Software Engineer & Developer
+                Developer
               </motion.div>
             </motion.h1>
 
@@ -119,12 +119,12 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-400 mb-8 sm:mb-12 max-w-3xl mx-auto px-4"
+              className="text-sm sm:text-lg md:text-xl lg:text-2xl text-zinc-400 mb-6 sm:mb-12 max-w-3xl mx-auto px-4 leading-relaxed"
             >
               <span className="text-cyan-400 font-semibold">BSc (Hons) Software Engineering</span> graduate from{' '}
               <span className="text-blue-400 font-semibold">Plymouth University</span>
-              <br className="hidden sm:block" />
-              Crafting innovative digital solutions through code
+              <br />
+              <span className="text-sm sm:text-base">Crafting innovative digital solutions through code</span>
             </motion.p>
 
             <motion.div
@@ -168,10 +168,47 @@ export default function Home() {
           className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative bg-white/5"
         >
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4">
+            {/* Mobile Toggle Switch */}
+            <div className="flex sm:hidden items-center justify-center">
+              <div className="relative bg-white/10 p-1 rounded-full inline-flex items-center border border-white/10">
+                <button
+                  onClick={() => setActiveTab('software')}
+                  className={`px-6 py-2.5 rounded-full font-medium transition-all text-sm relative z-10 ${
+                    activeTab === 'software'
+                      ? 'text-white'
+                      : 'text-zinc-400'
+                  }`}
+                >
+                  Software Engineering
+                </button>
+                <button
+                  onClick={() => setActiveTab('content')}
+                  className={`px-6 py-2.5 rounded-full font-medium transition-all text-sm relative z-10 ${
+                    activeTab === 'content'
+                      ? 'text-white'
+                      : 'text-zinc-400'
+                  }`}
+                >
+                  Content Creation
+                </button>
+                {/* Sliding background */}
+                <motion.div
+                  className="absolute top-1 bottom-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg shadow-cyan-500/30"
+                  initial={false}
+                  animate={{
+                    left: activeTab === 'software' ? '4px' : '50%',
+                    right: activeTab === 'software' ? '50%' : '4px',
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              </div>
+            </div>
+
+            {/* Desktop Buttons */}
+            <div className="hidden sm:flex flex-row items-center justify-center gap-4">
               <button
                 onClick={() => setActiveTab('software')}
-                className={`px-8 sm:px-12 py-4 rounded-full font-medium transition-all text-base sm:text-lg w-full sm:w-auto relative overflow-hidden group ${
+                className={`px-8 sm:px-12 py-4 rounded-full font-medium transition-all text-base sm:text-lg w-auto relative overflow-hidden group ${
                   activeTab === 'software'
                     ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
                     : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-white/10'
@@ -181,7 +218,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab('content')}
-                className={`px-8 sm:px-12 py-4 rounded-full font-medium transition-all text-base sm:text-lg w-full sm:w-auto relative overflow-hidden group ${
+                className={`px-8 sm:px-12 py-4 rounded-full font-medium transition-all text-base sm:text-lg w-auto relative overflow-hidden group ${
                   activeTab === 'content'
                     ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
                     : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-white/10'
@@ -388,7 +425,7 @@ export default function Home() {
                     transition={{ delay: 0.1 }}
                     className="text-center text-zinc-400 mb-8 sm:mb-12 text-sm sm:text-base"
                   >
-                    Content Creator | Technical Writer | Educator
+                    UGC Creator | Fitness | Lifestyle | Food
                   </motion.p>
 
                   <motion.div
@@ -398,13 +435,13 @@ export default function Home() {
                     className="space-y-4 sm:space-y-6 text-zinc-300 mb-12 sm:mb-16 text-sm sm:text-base leading-relaxed"
                   >
                     <p>
-                      Beyond coding, I'm passionate about <span className="text-cyan-400 font-semibold">sharing knowledge and empowering others</span> through content creation. My mission is to make complex technical concepts accessible and engaging for developers of all levels.
+                      Hello! I'm <span className="text-cyan-400 font-semibold">Dannan Gunathilake</span>, a UGC creator specializing in <span className="text-blue-400 font-semibold">fitness, lifestyle, and food</span> content. I create authentic, engaging content that resonates with audiences and drives meaningful connections between brands and their communities.
                     </p>
                     <p>
-                      Through various platforms, I create <span className="text-blue-400 font-semibold">technical tutorials, in-depth articles, video courses, and educational content</span> that help developers level up their skills. My content focuses on practical, real-world applications and best practices.
+                      As a content creator, I focus on producing <span className="text-cyan-400 font-semibold">high-quality user-generated content</span> that amplifies brand messages while maintaining authenticity. My work spans across various platforms, creating compelling visual stories that engage and inspire audiences.
                     </p>
                     <p>
-                      I believe in the power of community and knowledge sharing. Whether it's through blog posts, video tutorials, or podcast discussions, I strive to contribute meaningfully to the tech community and help others on their development journey.
+                      I would love to collaborate with brands looking for genuine, creative content that tells their story. My approach combines creativity with strategic thinking to help brands connect with their target audience and achieve their marketing goals.
                     </p>
                   </motion.div>
 
@@ -512,15 +549,7 @@ export default function Home() {
                 </motion.span>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Link>
-              <Link
-                href="#"
-                className="w-full sm:w-auto px-8 py-3 sm:py-4 border border-cyan-500/30 rounded-full font-medium hover:bg-cyan-500/10 hover:border-cyan-500 transition-all text-sm sm:text-base flex items-center justify-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Schedule Call
-              </Link>
+              
             </motion.div>
 
             <motion.div

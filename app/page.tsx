@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SoftwareProjects from '@/components/projects/SoftwareProjects';
 import ContentProjects from '@/components/projects/ContentProjects';
 import BootLoader from '@/components/effects/BootLoader';
-import GlitchText from '@/components/effects/GlitchText';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'software' | 'content'>('software');
@@ -156,58 +155,23 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Tech Stack Pills */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="mt-16 flex flex-wrap items-center justify-center gap-3 px-4"
-            >
-              {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'MongoDB'].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1 + index * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all cursor-default"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </motion.div>
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* Category Toggle Section */}
         <motion.section
           id="projects"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative"
+          className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative bg-white/5"
         >
           <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12 sm:mb-16"
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
-                  Featured Work
-                </span>
-              </h2>
-              <p className="text-zinc-400">Explore my latest projects and creations</p>
-            </motion.div>
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4 mb-12 sm:mb-16">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4">
               <button
                 onClick={() => setActiveTab('software')}
-                className={`px-6 sm:px-8 py-3 rounded-full font-medium transition-all text-sm sm:text-base w-full sm:w-auto relative overflow-hidden group ${
+                className={`px-8 sm:px-12 py-4 rounded-full font-medium transition-all text-base sm:text-lg w-full sm:w-auto relative overflow-hidden group ${
                   activeTab === 'software'
                     ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
                     : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-white/10'
@@ -217,7 +181,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab('content')}
-                className={`px-6 sm:px-8 py-3 rounded-full font-medium transition-all text-sm sm:text-base w-full sm:w-auto relative overflow-hidden group ${
+                className={`px-8 sm:px-12 py-4 rounded-full font-medium transition-all text-base sm:text-lg w-full sm:w-auto relative overflow-hidden group ${
                   activeTab === 'content'
                     ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
                     : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-white/10'
@@ -226,118 +190,275 @@ export default function Home() {
                 <span className="relative z-10">Content Creation</span>
               </button>
             </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                {activeTab === 'software' ? <SoftwareProjects /> : <ContentProjects />}
-              </motion.div>
-            </AnimatePresence>
           </div>
         </motion.section>
 
-        {/* About Section */}
-        <motion.section
-          id="about"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white/5 relative"
-        >
-          <div className="max-w-4xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 sm:mb-6"
-            >
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">About Me</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-center text-zinc-400 mb-8 sm:mb-12 text-sm sm:text-base"
-            >
-              Software Engineering Graduate | Full-Stack Developer
-            </motion.p>
-
+        <AnimatePresence mode="wait">
+          {activeTab === 'software' ? (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="space-y-4 sm:space-y-6 text-zinc-300 mb-12 sm:mb-16 text-sm sm:text-base leading-relaxed"
+              key="software"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <p>
-                I'm Dannan Gunathilake, a passionate software engineer with a <span className="text-cyan-400 font-semibold">BSc (Hons) in Software Engineering from Plymouth University</span>. My journey in technology is driven by a deep fascination for creating innovative digital solutions that make a real impact.
-              </p>
-              <p>
-                With expertise in modern web frameworks, mobile development, and backend systems, I specialize in building scalable, user-centric applications. My education has equipped me with strong foundations in software architecture, algorithms, and best practices in development.
-              </p>
-              <p>
-                I'm committed to continuous learning and staying at the forefront of technology trends. Whether it's exploring new frameworks, contributing to open-source projects, or solving complex problems, I'm always eager to push the boundaries of what's possible with code.
-              </p>
-              <p>
-                When I'm not coding, you'll find me exploring emerging technologies, sharing knowledge through content creation, and collaborating with fellow developers to build the next generation of digital experiences.
-              </p>
-            </motion.div>
+              {/* Software Engineering Tech Stack */}
+              <motion.section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-8"
+                  >
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+                      Tech Stack & Tools
+                    </h3>
+                  </motion.div>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Flutter', 'Tailwind CSS', 'Python'].map((tech, index) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all cursor-default"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </motion.section>
 
+              {/* Software Projects */}
+              <motion.section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                      <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+                        Software Projects
+                      </span>
+                    </h2>
+                    <p className="text-zinc-400">Explore my software engineering work</p>
+                  </motion.div>
+                  <SoftwareProjects />
+                </div>
+              </motion.section>
+
+              {/* Software Engineering About */}
+              <motion.section
+                id="about"
+                className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white/5 relative"
+              >
+                <div className="max-w-4xl mx-auto">
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 sm:mb-6"
+                  >
+                    <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">About Me</span>
+                  </motion.h2>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-center text-zinc-400 mb-8 sm:mb-12 text-sm sm:text-base"
+                  >
+                    Software Engineering Graduate | Full-Stack Developer
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-4 sm:space-y-6 text-zinc-300 mb-12 sm:mb-16 text-sm sm:text-base leading-relaxed"
+                  >
+                    <p>
+                      I'm Dannan Gunathilake, a passionate software engineer with a <span className="text-cyan-400 font-semibold">BSc (Hons) in Software Engineering from Plymouth University</span>. My journey in technology is driven by a deep fascination for creating innovative digital solutions that make a real impact.
+                    </p>
+                    <p>
+                      With expertise in modern web frameworks, mobile development, and backend systems, I specialize in building scalable, user-centric applications. My education has equipped me with strong foundations in software architecture, algorithms, and best practices in development.
+                    </p>
+                    <p>
+                      I'm committed to continuous learning and staying at the forefront of technology trends. Whether it's exploring new frameworks, contributing to open-source projects, or solving complex problems, I'm always eager to push the boundaries of what's possible with code.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="text-center p-6 sm:p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl border border-cyan-500/20 hover:border-cyan-500/50 transition-all"
+                    >
+                      <div className="text-cyan-400 mb-3 sm:mb-4 flex justify-center">
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">BSc (Hons)</div>
+                      <div className="text-sm sm:text-base text-zinc-400">Software Engineering</div>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="text-center p-6 sm:p-8 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-blue-500/20 hover:border-blue-500/50 transition-all"
+                    >
+                      <div className="text-blue-400 mb-3 sm:mb-4 flex justify-center">
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">15+</div>
+                      <div className="text-sm sm:text-base text-zinc-400">Projects Completed</div>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="text-center p-6 sm:p-8 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all"
+                    >
+                      <div className="text-purple-400 mb-3 sm:mb-4 flex justify-center">
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">5+</div>
+                      <div className="text-sm sm:text-base text-zinc-400">Years Experience</div>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.section>
+            </motion.div>
+          ) : (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
+              key="content"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center p-6 sm:p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl border border-cyan-500/20 hover:border-cyan-500/50 transition-all"
-              >
-                <div className="text-cyan-400 mb-3 sm:mb-4 flex justify-center">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">BSc (Hons)</div>
-                <div className="text-sm sm:text-base text-zinc-400">Software Engineering</div>
-              </motion.div>
+              
 
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center p-6 sm:p-8 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-blue-500/20 hover:border-blue-500/50 transition-all"
-              >
-                <div className="text-blue-400 mb-3 sm:mb-4 flex justify-center">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
+              {/* Content Creation Projects */}
+              <motion.section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                      <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+                        Content Portfolio
+                      </span>
+                    </h2>
+                    <p className="text-zinc-400">Explore my content creation work</p>
+                  </motion.div>
+                  <ContentProjects />
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-sm sm:text-base text-zinc-400">Projects Completed</div>
-              </motion.div>
+              </motion.section>
 
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center p-6 sm:p-8 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all"
+              {/* Content Creation About */}
+              <motion.section
+                id="about"
+                className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white/5 relative"
               >
-                <div className="text-purple-400 mb-3 sm:mb-4 flex justify-center">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+                <div className="max-w-4xl mx-auto">
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 sm:mb-6"
+                  >
+                    <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">About My Content</span>
+                  </motion.h2>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-center text-zinc-400 mb-8 sm:mb-12 text-sm sm:text-base"
+                  >
+                    Content Creator | Technical Writer | Educator
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-4 sm:space-y-6 text-zinc-300 mb-12 sm:mb-16 text-sm sm:text-base leading-relaxed"
+                  >
+                    <p>
+                      Beyond coding, I'm passionate about <span className="text-cyan-400 font-semibold">sharing knowledge and empowering others</span> through content creation. My mission is to make complex technical concepts accessible and engaging for developers of all levels.
+                    </p>
+                    <p>
+                      Through various platforms, I create <span className="text-blue-400 font-semibold">technical tutorials, in-depth articles, video courses, and educational content</span> that help developers level up their skills. My content focuses on practical, real-world applications and best practices.
+                    </p>
+                    <p>
+                      I believe in the power of community and knowledge sharing. Whether it's through blog posts, video tutorials, or podcast discussions, I strive to contribute meaningfully to the tech community and help others on their development journey.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="text-center p-6 sm:p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl border border-cyan-500/20 hover:border-cyan-500/50 transition-all"
+                    >
+                      <div className="text-cyan-400 mb-3 sm:mb-4 flex justify-center">
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">50K+</div>
+                      <div className="text-sm sm:text-base text-zinc-400">Monthly Reach</div>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="text-center p-6 sm:p-8 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-blue-500/20 hover:border-blue-500/50 transition-all"
+                    >
+                      <div className="text-blue-400 mb-3 sm:mb-4 flex justify-center">
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">12.5%</div>
+                      <div className="text-sm sm:text-base text-zinc-400">Engagement Rate</div>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="text-center p-6 sm:p-8 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all"
+                    >
+                      <div className="text-purple-400 mb-3 sm:mb-4 flex justify-center">
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">2.5K+</div>
+                      <div className="text-sm sm:text-base text-zinc-400">Active Followers</div>
+                    </motion.div>
+                  </motion.div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">100K+</div>
-                <div className="text-sm sm:text-base text-zinc-400">Followers & Readers</div>
-              </motion.div>
+              </motion.section>
             </motion.div>
-          </div>
-        </motion.section>
+          )}
+        </AnimatePresence>
 
         {/* Contact Section */}
         <motion.section

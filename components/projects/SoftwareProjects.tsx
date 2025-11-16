@@ -4,54 +4,63 @@ import ProjectCard, { Project } from './ProjectCard';
 // You can easily add, remove, or modify projects by editing this array
 const softwareProjects: Project[] = [
   {
-    icon: '📱',
-    title: 'E-Commerce Mobile App',
-    category: 'MOBILE DEVELOPMENT',
-    description: 'A feature-rich mobile application built with React Native and Firebase. Includes real-time inventory, secure payments, and push notifications.',
-    tags: ['React Native', 'Firebase', 'Stripe', 'Redux'],
-    link: '#'
+    icon: '🚢',
+    title: 'OMC Colombo',
+    category: 'Static Website',
+    description: 'Develeoped a stattic website for Ocean marine Consultants (PVT) Ltd (OMC Colombo) using Node.js and Tailwind CSS,delivering a responsive,visual appealing,and fast-loading design to effectively showcase the client\'s services ',
+    tags: ['Node.js', 'Tailwind CSS'],
+    link: 'https://www.omccolombo.org.lk/'
   },
   {
-    icon: '💼',
-    title: 'Enterprise Resource Planning System',
-    category: 'ERP SOLUTION',
-    description: 'A comprehensive ERP system for managing business operations including inventory, HR, finance, and supply chain management.',
-    tags: ['Next.js', 'PostgreSQL', 'Node.js', 'TypeScript'],
+    icon: '📱',
+    title: 'SpotOn-Smart Event Booking App',
+    category: 'Mobile Application',
+    description: 'Developed SpotOn, a modern Android app for event discovery and ticket booking with features like real-time bookings, QR codecheck-ins, Google Maps, calendar syncing, and event analytics',
+    tags: ['Flutter', 'Firebase', 'Google maps', 'OpenWeatherMap API'],
     hasDetails: true,
-    link: '#'
+    link: 'https://github.com/Dannansilva/SpotOn-'
   },
   {
     icon: '👥',
-    title: 'Project Management Platform',
+    title: 'ERP And Booking system',
     category: 'WEB APPLICATION',
-    description: 'Collaborative platform for teams to manage projects, tasks, and timelines. Features real-time collaboration and analytics dashboard.',
+    description: ' Developed a wellness retreat ERP system with advanced 15-minute booking calendar, VIP memberships, therapistscheduling, real-time discount approvals, finance dashboards, role-based access,and live notifications',
     tags: ['React', 'Tailwind', 'WebSockets', 'MongoDB'],
     link: '#'
   },
   {
-    icon: '💪',
-    title: 'Fitness Tracking App',
-    category: 'MOBILE DEVELOPMENT',
-    description: 'iOS and Android fitness application with workout tracking, nutrition logging, and AI-powered personalized recommendations.',
-    tags: ['Flutter', 'Firebase', 'Machine Learning', 'Provider'],
+    icon: '⛅',
+    title: 'Weather App',
+    category: 'mobile application',
+    description: ' created using bloc and weather api to get real weather conditions',
+    tags: ['Flutter', 'Openweather api','bloc'],
+    link: 'https://github.com/Dannansilva/weatherapp'
+  },
+  {
+    icon: '🪪',
+    title: ' GatePass',
+    category: 'mobile application',
+    description: ' GatePass is a mobile application that streamlines visitor management for a compoany, allowing employees to easily register and track visitors.',
+    tags: ['Flutter', 'bloc'],
     link: '#'
   },
   {
-    icon: '🏠',
-    title: 'Real Estate Management Dashboard',
-    category: 'WEB APPLICATION',
-    description: 'Comprehensive dashboard for property management with virtual tours, tenant management, and financial analytics.',
-    tags: ['Next.js', 'Python', 'PostgreSQL', 'Mapbox'],
+    icon: '🚚',
+    title: ' Mass Packing List',
+    category: 'mobile application',
+    description: ' app is use to scan productes by using their barcode',
+    tags: ['Flutter', 'bloc'],
     link: '#'
   },
   {
-    icon: '📊',
-    title: 'Supply Chain Analytics',
-    category: 'ERP SOLUTION',
-    description: 'Analytics system for supply chain optimization with predictive analytics, demand forecasting, and cost optimization.',
-    tags: ['Node.js', 'Python', 'PostgreSQL', 'D3.js'],
+    icon: '👥',
+    title: ' Leave Management System ',
+    category: 'Web Application',
+    description: ' A web application that allows employees to apply for leaves and managers to approve or reject them, with features like leave balance tracking and notifications.',
+    tags: ['Angular 18', 'Tailwind CSS'],
     link: '#'
   }
+  
 ];
 
 export default function SoftwareProjects() {

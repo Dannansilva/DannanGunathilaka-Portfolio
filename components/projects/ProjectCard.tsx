@@ -163,16 +163,35 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   // For non-video projects, render the full card with content
   return (
-    <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
+    <div className="group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
       {/* Card Content */}
       <div className="p-6 sm:p-8">
         <div className="flex items-start justify-between mb-4">
           {project.icon && <div className="text-3xl sm:text-4xl">{project.icon}</div>}
-          {project.hasDetails && (
-            <svg className="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          )}
+          <div className="flex items-center gap-2">
+            {project.link && project.link !== '#' && (
+              <Link
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-500/50 rounded-lg transition-all duration-300"
+              >
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 group-hover/link:text-cyan-300 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </Link>
+            )}
+          </div>
         </div>
         {project.title && <h3 className="text-lg sm:text-xl font-bold mb-2">{project.title}</h3>}
         {project.client && (
@@ -188,14 +207,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </span>
             ))}
           </div>
-        )}
-        {project.hasDetails && (
-          <Link href={project.link} className="inline-flex items-center gap-2 mt-4 sm:mt-6 text-blue-400 hover:text-blue-300 text-sm sm:text-base">
-            View Details
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </Link>
         )}
       </div>
     </div>

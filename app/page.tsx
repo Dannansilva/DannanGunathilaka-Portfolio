@@ -253,7 +253,7 @@ export default function Home() {
                     </h3>
                   </motion.div>
                   <div className="flex flex-wrap items-center justify-center gap-3">
-                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Flutter', 'Tailwind CSS', 'Python'].map((tech, index) => (
+                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Flutter', 'Tailwind CSS', 'Angular','Firebase'].map((tech, index) => (
                       <motion.span
                         key={tech}
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -369,7 +369,7 @@ export default function Home() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
                       </div>
-                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">5+</div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white mb-2">2+</div>
                       <div className="text-sm sm:text-base text-zinc-400">Years Experience</div>
                     </motion.div>
                   </motion.div>
@@ -533,7 +533,7 @@ export default function Home() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-16"
             >
               <Link
-                href="mailto:YOUR_EMAIL@example.com"
+                href="mailto:dannangunathilaka@gmail.com"
                 className="group w-full sm:w-auto px-8 py-3 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all text-sm sm:text-base flex items-center justify-center gap-2 relative overflow-hidden"
               >
                 <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -581,7 +581,7 @@ export default function Home() {
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.1, y: -2 }}>
-                <Link href="mailto:YOUR_EMAIL@example.com" className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/5 rounded-lg hover:bg-purple-500/20 hover:text-purple-400 transition-all border border-white/10 hover:border-purple-500/50">
+                <Link href="mailto:dannangunathilaka@gmail.com" className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/5 rounded-lg hover:bg-purple-500/20 hover:text-purple-400 transition-all border border-white/10 hover:border-purple-500/50">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>

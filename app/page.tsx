@@ -11,11 +11,36 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'software' | 'content'>('software');
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   const handleLoadComplete = () => {
     setIsLoading(false);
     setTimeout(() => setShowContent(true), 300);
   };
+
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['projects', 'about', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -49,26 +74,107 @@ export default function Home() {
                   &lt;DG/&gt;
                 </span>
               </Link>
+
+              {/* Desktop Navigation */}
               <div className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-base">
-                <Link href="#about" className="hover:text-cyan-400 transition-colors relative group">
-                  About
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                </Link>
-                <Link href="#projects" className="hover:text-cyan-400 transition-colors relative group">
+                <Link
+                  href="#projects"
+                  className={`transition-colors relative group ${
+                    activeSection === 'projects' ? 'text-cyan-400' : 'hover:text-cyan-400'
+                  }`}
+                >
                   Projects
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${
+                    activeSection === 'projects' ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
                 </Link>
-                <Link href="#contact" className="hover:text-cyan-400 transition-colors relative group">
+                <Link
+                  href="#about"
+                  className={`transition-colors relative group ${
+                    activeSection === 'about' ? 'text-cyan-400' : 'hover:text-cyan-400'
+                  }`}
+                >
+                  About
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${
+                    activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </Link>
+                <Link
+                  href="#contact"
+                  className={`transition-colors relative group ${
+                    activeSection === 'contact' ? 'text-cyan-400' : 'hover:text-cyan-400'
+                  }`}
+                >
                   Contact
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${
+                    activeSection === 'contact' ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
                 </Link>
               </div>
-              <button className="md:hidden p-2">
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 hover:text-cyan-400 transition-colors"
+              >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  {mobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
                 </svg>
               </button>
             </div>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+              {mobileMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="md:hidden overflow-hidden"
+                >
+                  <div className="py-4 space-y-4">
+                    <Link
+                      href="#projects"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block py-2 px-4 rounded-lg transition-colors ${
+                        activeSection === 'projects'
+                          ? 'bg-cyan-500/20 text-cyan-400'
+                          : 'hover:bg-white/5 hover:text-cyan-400'
+                      }`}
+                    >
+                      Projects
+                    </Link>
+                    <Link
+                      href="#about"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block py-2 px-4 rounded-lg transition-colors ${
+                        activeSection === 'about'
+                          ? 'bg-cyan-500/20 text-cyan-400'
+                          : 'hover:bg-white/5 hover:text-cyan-400'
+                      }`}
+                    >
+                      About
+                    </Link>
+                    <Link
+                      href="#contact"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block py-2 px-4 rounded-lg transition-colors ${
+                        activeSection === 'contact'
+                          ? 'bg-cyan-500/20 text-cyan-400'
+                          : 'hover:bg-white/5 hover:text-cyan-400'
+                      }`}
+                    >
+                      Contact
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </motion.nav>
 
